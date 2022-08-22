@@ -91,7 +91,7 @@ class DB{
 }
 $Bot=new DB('bot');
 $Mem=new DB('mem');
-
+$Admin=new DB('admin');
 function to($url){
     header("location:".$url);
 }
