@@ -39,7 +39,7 @@ class DB{
             }
             $sql .= join(" && ",$tmp);
         }else{
-            $sql .="`id`='$arg[0]'";
+            $sql .=" `id`='$arg'";
         }
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
@@ -89,6 +89,7 @@ class DB{
     }
 
 }
+$Bot=new DB('bot');
 
 function to($url){
     header("location:".$url);

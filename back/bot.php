@@ -3,7 +3,7 @@
 <table class="all">
     <tr>
         <td class="tt ct">頁尾宣告內容</td>
-        <td class="pp"><input type="text" name="bot" id=""></td>
+        <td class="pp"><input type="text" name="bot" value="<?=$Bot->find(1)['bot'];?>"></td>
     </tr>
 </table>
 <div class="ct">
