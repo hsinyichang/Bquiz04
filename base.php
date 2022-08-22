@@ -18,7 +18,7 @@ class DB{
         if(isset($arg[0])){
             if(is_array($arg[0])){
                 foreach($arg[0] as $key=>$val){
-                    $tmp="`$key`='$val'";
+                    $tmp[]="`$key`='$val'";
                 }
                 $sql .=" where".join(" && ",$tmp);
             }else{
@@ -35,7 +35,7 @@ class DB{
         $sql="select * from $this->table where ";
         if(is_array($arg)){
             foreach($arg as $key=>$val){
-                $tmp="`$key`='$val'";
+                $tmp[]="`$key`='$val'";
             }
             $sql .= join(" && ",$tmp);
         }else{
@@ -48,7 +48,7 @@ class DB{
         $sql="delete from $this->table where ";
         if(is_array($arg)){
             foreach($arg as $key=>$val){
-                $tmp="`$key`='$val'";
+                $tmp[]="`$key`='$val'";
             }
             $sql .= join(" && ",$tmp);
         }else{
@@ -62,9 +62,9 @@ class DB{
         if(isset($arg[0])){
             if(is_array($arg[0])){
                 foreach($arg[0] as $key=>$val){
-                    $tmp="`$key`='$val'";
+                    $tmp[]="`$key`='$val'";
                 }
-                $sql .=" where".join(" && ",$tmp);
+                $sql .= " where " . join(" && ",$tmp);
             }else{
                 $sql .=$arg[0];
             }
@@ -78,7 +78,7 @@ class DB{
     function save($array){
         if(isset($array['id'])){
             foreach($array as $key=>$val){
-                $tmp="`$key`='$val'";
+                $tmp[]="`$key`='$val'";
             }
             $sql="update $this->table set ".join(',',$tmp)." where `id`={$array['id']}";
         }else{
@@ -90,6 +90,7 @@ class DB{
 
 }
 $Bot=new DB('bot');
+$Mem=new DB('mem');
 
 function to($url){
     header("location:".$url);
