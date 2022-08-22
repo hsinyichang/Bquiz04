@@ -1,6 +1,4 @@
-<?php
-include_once "base.php";
-?> 
+<?php include_once "base.php";?>
 <!DOCTYPE html
     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0039) -->
@@ -19,7 +17,7 @@ include_once "base.php";
     <iframe name="back" style="display:none;"></iframe>
     <div id="main">
         <div id="top">
-            <a href="index.php">
+            <a href="?">
                 <img src="./icon/0416.jpg">
             </a>
             <div style="padding:10px;">
@@ -27,16 +25,36 @@ include_once "base.php";
                 <a href="?do=news">最新消息</a> |
                 <a href="?do=look">購物流程</a> |
                 <a href="?do=buycart">購物車</a> |
-                <a href="?do=login">會員登入</a> |
-                <a href="?do=admin">管理登入</a>
-            </div>
+                <?php
+                if(isset($_SESSION['mem'])){
+                    echo "<a href='#' onclick=logout('mem')>登出</a> |";
+
+                }else{
+                    echo "<a href='?do=login'>會員登入</a> |";
+
+                }
+
+                if(isset($_SESSION['admin'])){
+                    echo "<a href='#' onclick=location.href='back.php'>返回管理</a>";
+
+                }else{
+                    echo "<a href='?do=admin'>管理登入</a>";
+
+                }
+                
+                
+
+
+                ?>
+                
+            </div> 
             <marquee>
-            情人節特惠活動 &nbsp;  年終特賣會開跑了
+                情人節特惠活動 &nbsp; 年終特賣會開跑了
             </marquee>
         </div>
         <div id="left" class="ct">
             <div style="min-height:400px;">
-                <a href="#">全部商品(8)</a>
+            <a href="#">全部商品(8)</a>
             </div>
             <span>
                 <div>進站總人數</div>
@@ -45,18 +63,19 @@ include_once "base.php";
             </span>
         </div>
         <div id="right">
-                <?php
-                $do=$_GET['do']??'main';
-                $file="./front/".$do.".php";
-                if(file_exists($file)){
-                        include $file;
-                }else{
-                        include "./front/main.php";
-                }
-                ?>
+        <?php 
+        $do=$_GET['do']??'main';
+        $file="./front/".$do.".php";
+        if(file_exists($file)){
+                include $file;
+        }else{
+                include "./front/main.php";
+        }
+        ?>
+
         </div>
         <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
-             <?=$Bot->find(1)['bot'];?></div>
+            <?=$Bot->find(1)['bot'];?> </div>
     </div>
 
 </body>
