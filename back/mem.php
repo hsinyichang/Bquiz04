@@ -15,7 +15,7 @@
         <td><?=$row['acc'];?></td>
         <td><?=$row['regdate'];?></td>
         <td>
-            <button>修改</button>
+            <button onclick="location.href='?do=edit_mem&id=<?=$row['id']?>'">修改</button>
             <button onclick="del('mem',<?=$row['id'];?>)">刪除</button>  <!--按鈕是在迴圈裡面，所以可以直接放入id值-->
         </td>
     </tr>
