@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_GET['id'])) {
-    $_SESSION['cart'][$_GET['id']] = $_GET['qt']; 
+    $_SESSION['cart'][$_GET['id']] = $_GET['qt'];
 }
 
 if (!isset($_SESSION['mem'])) {
@@ -9,7 +9,7 @@ if (!isset($_SESSION['mem'])) {
 }
 
 if (empty($_SESSION['cart'])) {
-    echo "<h2 class='ct'>購物車目前無商品</h2>";    //這裡若沒有商品會只跑出這行
+    echo "<h2 class='ct'>購物車目前無商品</h2>";
 } else {
 ?>
 
@@ -26,15 +26,15 @@ if (empty($_SESSION['cart'])) {
         </tr>
 
         <?php
-        foreach ($_SESSION['cart'] as $id => $qt) {  //上面的session 把id 跟數量列出來
-            $row = $Goods->find($id);   //找到session的id
+        foreach ($_SESSION['cart'] as $id => $qt) {
+            $row = $Goods->find($id);
         ?>
 
             <tr class="pp ct">
                 <td><?= $row['no']; ?></td>
                 <td><?= $row['name']; ?></td>
                 <td><?= $qt; ?></td>
-                <td><?= $row['spec']; ?></td>
+                <td><?= $row['qt']; ?></td>
                 <td><?= $row['price']; ?></td>
                 <td><?= $row['price'] * $qt; ?></td>
                 <td>

@@ -33,9 +33,10 @@ $mem=$Mem->find(['acc'=>$_SESSION['mem']]);
         <td>小計</td>
     </tr>
     <?php
+    $sum=0;
         foreach ($_SESSION['cart'] as $id => $qt) {  //上面的session 把id 跟數量列出來
             $row = $Goods->find($id);   //找到session的id
-            $sum=0;
+            
         ?>
     <tr class="pp tc">
         <td><?=$row['name'];?></td>
