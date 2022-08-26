@@ -50,7 +50,8 @@
         <div id="left" class="ct">
             <div style="min-height:400px;">
                 <div class='ww'>
-                    <a href="?type=0">全部商品(8)</a>
+                <?php $count=$Goods->math('count','id',['sh'=>1]);?>
+                    <a href="?type=0">全部商品(<?=$count;?>)</a>
                 </div>
                 <?php
                 $bigs = $Type->all(['parent' => 0]);  //可從api/type_list.php 複製過來
