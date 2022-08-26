@@ -1,5 +1,5 @@
 <?php
-if ($_GET['type'] != 0) {
+if(isset($_GET['type']) && $_GET['type']!=0){
     $type = $Type->find($_GET['type']);
     if ($type['parent'] == 0) {
         $typebig = $type['name'];
@@ -27,7 +27,7 @@ foreach($rows as $row){
     </div>
     <div style="width:65%">
         <div class="tt"><?=$row['name'];?></div>
-        <div>價錢:<?=$row['price']?></div>
+        <div>價錢:<?=$row['price']?><a href="?do=buycar&id=<?=$row['id']?>"&qt=1><img src="./icon/0402.jpg" style="float: right;"></a></div>
         <div>規格:<?=$row['spec']?></div>
         <div>簡介:<?=mb_substr($row['intro'],0,25)?>...</div>
     </div>

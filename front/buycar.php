@@ -1,3 +1,11 @@
+<?php
+if(!isset($_SESSION['user'])){
+    to('?do=login');
+}
+?>
+
+
+
 <h2 class="ct">XXX的購物車</h2>
 <table class="all">
     <tr class="tt ct">
