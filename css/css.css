@@ -6,9 +6,9 @@ body
 }
 #main
 {
-	width:1034px;
+	width:1024px;
 	padding:10px;
-	margin:20px auto 20px auto;
+	margin:10px auto 10px auto;
 	border:#000 solid 1px;
 	min-height:768px;
 }
@@ -35,6 +35,22 @@ body
 	margin:10px auto 10px auto;
 	color:#65350A;
 }
+
+.s
+{
+	display:none;
+}
+
+div.ww:hover > div.s
+{
+	display:block;
+}
+
+.sb button
+{
+	font-size:12px;
+}
+
 .ct
 {
 	text-align:center;
@@ -42,7 +58,7 @@ body
 #right
 {
 	display:inline-block;
-	width:71%;
+	width:70%;
 	padding:2%;
 	min-height:450px;
 	border:#000 1px solid;
@@ -50,7 +66,6 @@ body
 #bottom
 {
 	height:70px;
-	background:url(icon/bot.png);
 	background-size:cover;
 }
 .al
@@ -65,7 +80,7 @@ body
 }
 .all td
 {
-	min-width:50px; /*更改*/
+	min-width:50px;
 	padding:10px;
 }
 .tt
@@ -97,16 +112,4 @@ input[type=text],input[type=password],input[type=submit],button,.button,input[ty
 input[type=text],input[type=password]
 {
 	width:170px;
-}
-.s
-{
-	display:none;
-}
-div.ww:hover > div.s
-{
-	display:block;
-}
-.sb button
-{
-	font-size:12px;
 }
