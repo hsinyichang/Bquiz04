@@ -29,7 +29,7 @@ foreach($rows as $row){
         <div class="tt"><?=$row['name'];?></div>
         <div>價錢:<?=$row['price']?></div>
         <div>規格:<?=$row['spec']?></div>
-        <div>簡介:<?=$row['intro']?></div>
+        <div>簡介:<?=mb_substr($row['intro'],0,25)?>...</div>
     </div>
 </div>
 <?php
