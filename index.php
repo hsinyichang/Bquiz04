@@ -79,7 +79,7 @@
                     00005 </div>
             </span>
         </div>
-        <div id="right" style="overflow: auto;">
+        <div id="right">
             <?php
             $do = $_GET['do'] ?? 'main';
             $file = "./front/" . $do . ".php";
