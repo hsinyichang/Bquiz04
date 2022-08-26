@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-08-22 10:21:59
+-- 產生時間： 2022-08-23 10:37:08
 -- 伺服器版本： 10.4.24-MariaDB
 -- PHP 版本： 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫： `db04`
+-- 資料庫： `db10`
 --
 
 -- --------------------------------------------------------
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id` int(10) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
   `acc` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `pw` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pr` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '權限'
+  `pr` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -39,7 +39,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `acc`, `pw`, `pr`) VALUES
-(1, 'admin', '1234', 'a:5:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;}');
+(1, 'admin', '1234', 'a:5:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;}'),
+(2, 'mack', '1234', 'a:2:{i:0;s:1:\"4\";i:1;s:1:\"5\";}'),
+(3, 'root', '1111', 'a:3:{i:0;s:1:\"3\";i:1;s:1:\"4\";i:2;s:1:\"5\";}');
 
 -- --------------------------------------------------------
 
@@ -48,7 +50,7 @@ INSERT INTO `admin` (`id`, `acc`, `pw`, `pr`) VALUES
 --
 
 CREATE TABLE `bot` (
-  `id` int(10) NOT NULL,
+  `id` int(11) UNSIGNED NOT NULL,
   `bot` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -57,7 +59,34 @@ CREATE TABLE `bot` (
 --
 
 INSERT INTO `bot` (`id`, `bot`) VALUES
-(1, 'copyright 2022頁尾版權宣告');
+(1, '精品電商製作');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `goods`
+--
+
+CREATE TABLE `goods` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `no` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int(11) UNSIGNED NOT NULL,
+  `spec` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qt` int(11) UNSIGNED NOT NULL,
+  `img` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `intro` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `big` int(11) UNSIGNED NOT NULL,
+  `mid` int(11) UNSIGNED NOT NULL,
+  `sh` int(1) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `goods`
+--
+
+INSERT INTO `goods` (`id`, `no`, `name`, `price`, `spec`, `qt`, `img`, `intro`, `big`, `mid`, `sh`) VALUES
+(1, '010203', '手工訂製長夾', 1200, '全牛皮', 2, '0403.jpg', '手工製作長夾卡片層6*2 鈔票層 *2 零錢拉鍊層 *1 \r\n採用愛馬仕相同的雙針縫法,皮件堅固耐用不脫線 \r\n材質:直革鞣(馬鞍皮)牛皮製作  \r\n手工染色 ', 1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -81,8 +110,36 @@ CREATE TABLE `mem` (
 --
 
 INSERT INTO `mem` (`id`, `acc`, `pw`, `name`, `addr`, `tel`, `email`, `regdate`) VALUES
-(1, 'gina', '0615', '張欣儀', '中榮街104巷9號1樓', '0937839765', 'f1233772002@gmail.com', '2022-08-22'),
-(2, 'mem01', 'mem01', 'mem01', 'dfdafdfa', '095555453', 'daf@dfsaf', '2022-08-22');
+(3, 'mem01', 'mem01', '哥布林殺手', '新北', '0999222333', 'killer@gmail.com', '2022-08-23');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `type`
+--
+
+CREATE TABLE `type` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `type`
+--
+
+INSERT INTO `type` (`id`, `name`, `parent`) VALUES
+(1, '流行皮件', 0),
+(2, '流行鞋區', 0),
+(3, '男用皮件', 1),
+(4, '流行飾品', 0),
+(5, '旅行背包', 0),
+(8, '女用皮件', 1),
+(9, '少女鞋區', 2),
+(10, '紳士流行鞋區', 2),
+(11, '時尚手錶', 4),
+(12, '時尚珠寶', 4),
+(13, '背包', 5);
 
 --
 -- 已傾印資料表的索引
@@ -101,9 +158,21 @@ ALTER TABLE `bot`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `goods`
+--
+ALTER TABLE `goods`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `mem`
 --
 ALTER TABLE `mem`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `type`
+--
+ALTER TABLE `type`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -114,19 +183,31 @@ ALTER TABLE `mem`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `bot`
 --
 ALTER TABLE `bot`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `goods`
+--
+ALTER TABLE `goods`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `mem`
 --
 ALTER TABLE `mem`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `type`
+--
+ALTER TABLE `type`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

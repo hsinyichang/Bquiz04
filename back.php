@@ -24,6 +24,7 @@
         </div>
         <div id="left" class="ct">
             <div style="min-height:400px;">
+            <a href="?do=admin">管理權限設置</a>
             <?php
                 echo (in_array(1,$_SESSION['pr']))?"<a href='?do=th'>商品分類與管理</a>":"";  //登入管理者的權限顯示
                 echo (in_array(2,$_SESSION['pr']))?"<a href='?do=order'>訂單管理</a>":"";
