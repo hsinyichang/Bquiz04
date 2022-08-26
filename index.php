@@ -55,13 +55,13 @@
                 <?php
                 $bigs = $Type->all(['parent' => 0]);  //可從api/type_list.php 複製過來
                 foreach ($bigs as $big) {                
-                    echo " <div class='ww'>";
+                    echo " <div class='ww'>";    //包住整個大分類+中分類
                     echo "<a>{$big['name']}</a>";
                     
                         $mids = $Type->all(['parent' => $big['id']]);
                         if (!empty($mids)) {
                             foreach ($mids as $mid) {
-                                echo "<div class='s'>";
+                                echo "<div class='s'>";   //這裡是中分類
                                 echo "    <a style='background:lightgreen;color:darkgreen'>{$mid['name']}</a>";
                                 echo "</div>";
                             }
